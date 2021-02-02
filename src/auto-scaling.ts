@@ -5,7 +5,7 @@ export class AutoScaling {
     let header = new TextWidget({
       width: 24,
       height: 1,
-      markdown: `# ${name} - ECS Auto Scaling Group`,
+      markdown: `# ${name} - Auto Scaling Group`,
     });
     let groupInServiceInstancesMetric = new Metric({
       namespace: 'AWS/AutoScaling',
