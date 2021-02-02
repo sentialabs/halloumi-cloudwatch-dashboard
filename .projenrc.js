@@ -31,7 +31,7 @@ const project = new AwsCdkConstructLibrary({
   // publishToNuget: undefined,                                                         /* Publish to NuGet. */
   publishToPypi: {
     distName: 'halloumi-cloudwatch-dashboard',
-    module: 'halloumi_cloudwatch_dashboard'
+    module: 'halloumi_cloudwatch_dashboard',
   }, /* Publish to pypi. */
   // rootdir: '.',                                                                      /* undefined */
 
