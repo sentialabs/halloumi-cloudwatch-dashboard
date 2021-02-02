@@ -4,18 +4,18 @@
 
 Name|Description
 ----|-----------
-[Dashboard](#cloudwatch-dashboard-dashboard)|An AWS CloudWatch Dashboard.
+[Dashboard](#halloumi-cloudwatch-dashboard-dashboard)|An AWS CloudWatch Dashboard.
 
 
 **Structs**
 
 Name|Description
 ----|-----------
-[HalloumiDashboard](#cloudwatch-dashboard-halloumidashboard)|*No description*
+[HalloumiDashboard](#halloumi-cloudwatch-dashboard-halloumidashboard)|*No description*
 
 
 
-## class Dashboard  <a id="cloudwatch-dashboard-dashboard"></a>
+## class Dashboard  <a id="halloumi-cloudwatch-dashboard-dashboard"></a>
 
 An AWS CloudWatch Dashboard.
 
@@ -33,7 +33,7 @@ new Dashboard(scope: Construct, id: string, props?: HalloumiDashboard)
 
 * **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  the scope into which to import this dashboard.
 * **id** (<code>string</code>)  the logical ID of the returned dashboard construct.
-* **props** (<code>[HalloumiDashboard](#cloudwatch-dashboard-halloumidashboard)</code>)  *No description*
+* **props** (<code>[HalloumiDashboard](#halloumi-cloudwatch-dashboard-halloumidashboard)</code>)  *No description*
   * **dashboardName** (<code>string</code>)  Name of the dashboard. __*Default*__: automatically generated name
   * **end** (<code>string</code>)  The end of the time range to use for each widget on the dashboard when the dashboard loads. __*Default*__: When the dashboard loads, the end date will be the current time.
   * **periodOverride** (<code>[PeriodOverride](#aws-cdk-aws-cloudwatch-periodoverride)</code>)  Use this field to specify the period for the graphs when the dashboard loads. __*Default*__: Auto
@@ -49,7 +49,7 @@ new Dashboard(scope: Construct, id: string, props?: HalloumiDashboard)
 
 
 
-## struct HalloumiDashboard  <a id="cloudwatch-dashboard-halloumidashboard"></a>
+## struct HalloumiDashboard  <a id="halloumi-cloudwatch-dashboard-halloumidashboard"></a>
 
 
 

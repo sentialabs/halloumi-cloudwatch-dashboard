@@ -1,8 +1,8 @@
 {
-  "name": "cloudwatch-dashboard",
+  "name": "halloumi-cloudwatch-dashboard",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rzamana/cloudwatch-dashboard.git"
+    "url": "https://github.com/sentiampc/halloumi-cloudwatch-dashboard.git"
   },
   "scripts": {
     "projen": "npx projen",
@@ -25,7 +25,7 @@
   },
   "author": {
     "name": "Sentia MPC",
-    "email": "sentiampc@sentia.com",
+    "email": "support.mpc@sentia.com",
     "organization": false
   },
   "devDependencies": {
@@ -58,8 +58,7 @@
   },
   "dependencies": {
     "@aws-cdk/aws-cloudwatch": "^1.73.0",
-    "@aws-cdk/core": "^1.73.0",
-    "configure": "0.0.1"
+    "@aws-cdk/core": "^1.73.0"
   },
   "bundledDependencies": [],
   "keywords": [
