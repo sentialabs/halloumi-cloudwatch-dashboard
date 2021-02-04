@@ -1,5 +1,12 @@
 # Halloumi Cloudwatch Dashboard
 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![GitHub](https://img.shields.io/badge/github-sentiampc%2Fhalloumi--cloudwatch--dashboard-orange.svg)](https://github.com/sentiampc/halloumi-cloudwatch-dashboard)
+[![PyPI version fury.io](https://badge.fury.io/py/halloumi-cloudwatch-dashboard.svg)](https://pypi.python.org/pypi/halloumi-cloudwatch-dashboard/)
+[![npm version](https://badge.fury.io/js/halloumi-cloudwatch-dashboard.svg)](https://badge.fury.io/js/halloumi-cloudwatch-dashboard)
+[![GitHub license](https://img.shields.io/github/license/sentiampc/halloumi-cloudwatch-dashboard.svg)](https://github.com/sentiampc/halloumi-cloudwatch-dashboard/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/sentiampc/halloumi-cloudwatch-dashboard.svg)](https://GitHub.com/sentiampc/halloumi-cloudwatch-dashboard/releases/)
+
 Create a dashboard in the AWS Cloudwatch using the best practices from Halloumi.
 
 ## Install
