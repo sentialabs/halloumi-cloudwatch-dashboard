@@ -1,7 +1,38 @@
-import { IWidget, TextWidget, Metric, GraphWidget, MathExpression } from '@aws-cdk/aws-cloudwatch';
+import { IWidget, TextWidget, Metric, GraphWidget, MathExpression, GraphWidgetProps } from '@aws-cdk/aws-cloudwatch';
+
+export class SimpleAutoScalingGroupProps {
+  /**
+  * Name of the AutoScaling.
+  *
+  * If set, must only contain alphanumerics, dash (-) and underscore (_)
+  *
+  * @default - None
+  * @stability stable
+  */
+  readonly autoScalingGroupName!: string;
+
+   /**
+    * Max Capacity of the AutoScaling.
+    *
+    * If set, must only contain integer
+    *
+    * @default - 0
+    * @stability stable
+    */
+   readonly autoScalingGroupMaxCapacity!: number;
+}
+
+export class SimpleAutoScalingGroup implements SimpleAutoScalingGroupProps {
+  constructor(props: SimpleAutoScalingGroupProps) {
+    this.autoScalingGroupName = props.autoScalingGroupName;
+    this.autoScalingGroupMaxCapacity = props.autoScalingGroupMaxCapacity;
+  }
+  autoScalingGroupName: string;
+  autoScalingGroupMaxCapacity: number;
+}
 
 export class AutoScaling {
-  static metrics(name:string, max_capacity: number): IWidget[] {
+  static metrics(name:string, max_capacity?: number): IWidget[] {
     let header = new TextWidget({
       width: 24,
       height: 1,
@@ -14,7 +45,16 @@ export class AutoScaling {
         AutoScalingGroupName: name,
       },
     });
-    let GroupInServiceInstances = new GraphWidget({
+    let leftAnnotations: any = null
+    if ( typeof(max_capacity) == 'number') {
+      leftAnnotations = [
+        {
+          label: 'Max Instances in ASG',
+          value: max_capacity,
+        },
+      ]
+    }
+    let GroupInServiceInstancesProps:GraphWidgetProps = {
       height: 6,
       width: 12,
       leftYAxis: {
@@ -22,13 +62,9 @@ export class AutoScaling {
         label: 'Instances',
         showUnits: false,
       },
-      leftAnnotations: [
-        {
-          label: 'Max Instances in ASG',
-          value: max_capacity,
-        },
-      ],
-    });
+      leftAnnotations: leftAnnotations
+    }
+    let GroupInServiceInstances = new GraphWidget(GroupInServiceInstancesProps);
     GroupInServiceInstances.addRightMetric(groupInServiceInstancesMetric);
     GroupInServiceInstances.addLeftMetric(
       new MathExpression({
