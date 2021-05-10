@@ -12,11 +12,12 @@ const project = new AwsCdkConstructLibrary({
   // cdkAssert: true,                                                                   /* Install the @aws-cdk/assert library? */
   cdkDependencies: [
     '@aws-cdk/aws-autoscaling',
-    '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-cloudwatch',
     '@aws-cdk/core',
   ], /* Which AWS CDK modules (those that start with "@aws-cdk/") does this library require when consumed? */
-  // cdkTestDependencies: undefined,                                                    /* AWS CDK modules required for testing. */
+  cdkTestDependencies: [
+    '@aws-cdk/aws-ec2'
+  ],                                                    /* AWS CDK modules required for testing. */
   // cdkVersionPinning: false,                                                          /* Use pinned version instead of caret version for CDK. */
 
   /* ConstructLibraryOptions */

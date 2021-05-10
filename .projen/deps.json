@@ -6,6 +6,11 @@
       "type": "build"
     },
     {
+      "name": "@aws-cdk/aws-ec2",
+      "version": "^1.73.0",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },
@@ -96,11 +101,6 @@
       "type": "peer"
     },
     {
-      "name": "@aws-cdk/aws-ec2",
-      "version": "^1.73.0",
-      "type": "peer"
-    },
-    {
       "name": "@aws-cdk/core",
       "version": "^1.73.0",
       "type": "peer"
@@ -117,11 +117,6 @@
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
-      "version": "^1.73.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/aws-ec2",
       "version": "^1.73.0",
       "type": "runtime"
     },
