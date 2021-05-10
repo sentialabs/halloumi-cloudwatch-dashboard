@@ -1,4 +1,4 @@
-import { AutoScalingGroup } from '@aws-cdk/aws-autoscaling';
+import { AutoScalingGroup, CfnAutoScalingGroup } from '@aws-cdk/aws-autoscaling';
 import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
 import { Construct } from '@aws-cdk/core';
 import { AutoScaling } from './auto-scaling';
@@ -35,7 +35,7 @@ export interface HalloumiDashboard extends DashboardProps {
    * @default - None
    * @stability stable
    */
-  readonly autoScaling?: AutoScalingGroup[];
+  readonly autoScaling?: (AutoScalingGroup | CfnAutoScalingGroup)[];
 
   /**
    * Name of the RDS.
@@ -105,6 +105,14 @@ export class Dashboard extends Construct {
           autoScalingWidgets.forEach(widget => {
             dashboard.addWidgets(widget);
           });
+        } else if (auto_scaling_group instanceof CfnAutoScalingGroup) {
+          let name = auto_scaling_group.ref;
+          let maxCapacity = parseInt(auto_scaling_group.maxSize);
+          let autoScalingWidgets = AutoScaling.metrics(name, maxCapacity);
+          autoScalingWidgets.forEach(widget => {
+            dashboard.addWidgets(widget);
+          });
+          dashboard.node.addDependency(auto_scaling_group);
         }
       }
     }

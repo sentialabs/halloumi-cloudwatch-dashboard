@@ -1,7 +1,7 @@
 import { IWidget, TextWidget, Metric, GraphWidget, MathExpression, GraphWidgetProps } from '@aws-cdk/aws-cloudwatch';
 
 export class AutoScaling {
-  static metrics(name:string, max_capacity?: number): IWidget[] {
+  static metrics(name?:string, max_capacity?: number): IWidget[] {
     let header = new TextWidget({
       width: 24,
       height: 1,
