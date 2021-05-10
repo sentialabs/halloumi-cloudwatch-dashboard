@@ -1,12 +1,11 @@
-import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
 import { AutoScalingGroup } from '@aws-cdk/aws-autoscaling';
+import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
 import { Construct } from '@aws-cdk/core';
-import { AutoScaling, SimpleAutoScalingGroup } from './auto-scaling';
+import { AutoScaling } from './auto-scaling';
 import { LoadBalancer } from './load-balancer';
 import { Rds } from './rds';
 import { Redis } from './redis';
 
-export { SimpleAutoScalingGroup } from './auto-scaling';
 export interface HalloumiDashboard extends DashboardProps {
   /**
    * Name of the Load Balancer.
@@ -36,7 +35,7 @@ export interface HalloumiDashboard extends DashboardProps {
    * @default - None
    * @stability stable
    */
-   readonly autoScaling?: AutoScalingGroup[] | SimpleAutoScalingGroup[];
+  readonly autoScaling?: AutoScalingGroup[];
 
   /**
    * Name of the RDS.
@@ -101,16 +100,11 @@ export class Dashboard extends Construct {
     if (props?.autoScaling) {
       for (let i=0; i<props.autoScaling.length; i++) {
         let auto_scaling_group = props.autoScaling[i];
-        if (auto_scaling_group instanceof AutoScalingGroup){
+        if (auto_scaling_group instanceof AutoScalingGroup) {
           let autoScalingWidgets = AutoScaling.metrics(auto_scaling_group.autoScalingGroupName);
           autoScalingWidgets.forEach(widget => {
             dashboard.addWidgets(widget);
-          }); 
-        } else if (auto_scaling_group instanceof SimpleAutoScalingGroup){
-            let autoScalingWidgets = AutoScaling.metrics(auto_scaling_group.autoScalingGroupName, auto_scaling_group.autoScalingGroupMaxCapacity);
-            autoScalingWidgets.forEach(widget => {
-              dashboard.addWidgets(widget);
-            });
+          });
         }
       }
     }
