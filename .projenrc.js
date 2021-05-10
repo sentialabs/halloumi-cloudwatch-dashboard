@@ -16,8 +16,8 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/core',
   ], /* Which AWS CDK modules (those that start with "@aws-cdk/") does this library require when consumed? */
   cdkTestDependencies: [
-    '@aws-cdk/aws-ec2'
-  ],                                                    /* AWS CDK modules required for testing. */
+    '@aws-cdk/aws-ec2',
+  ], /* AWS CDK modules required for testing. */
   // cdkVersionPinning: false,                                                          /* Use pinned version instead of caret version for CDK. */
 
   /* ConstructLibraryOptions */
