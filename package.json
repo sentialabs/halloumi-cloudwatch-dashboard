@@ -19,8 +19,8 @@
     "watch": "npx projen watch",
     "package": "npx projen package",
     "eslint": "npx projen eslint",
-    "compat": "npx projen compat",
     "docgen": "npx projen docgen",
+    "compat": "npx projen compat",
     "projen": "npx projen",
     "start": "npx projen start"
   },
@@ -50,6 +50,7 @@
     "projen": "^0.17.84",
     "standard-version": "^9",
     "ts-jest": "^26.5.0",
+    "typedoc": "^0.20.35",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
