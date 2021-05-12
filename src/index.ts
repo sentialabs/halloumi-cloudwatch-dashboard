@@ -100,20 +100,19 @@ export class Dashboard extends Construct {
     if (props?.autoScaling) {
       for (let i=0; i<props.autoScaling.length; i++) {
         let auto_scaling_group = props.autoScaling[i];
-        if (auto_scaling_group instanceof AutoScalingGroup) {
-          let autoScalingWidgets = AutoScaling.metrics(auto_scaling_group.autoScalingGroupName);
-          autoScalingWidgets.forEach(widget => {
-            dashboard.addWidgets(widget);
-          });
-        } else if (auto_scaling_group instanceof CfnAutoScalingGroup) {
-          let name = auto_scaling_group.ref;
-          let maxCapacity = parseInt(auto_scaling_group.maxSize);
-          let autoScalingWidgets = AutoScaling.metrics(name, maxCapacity);
-          autoScalingWidgets.forEach(widget => {
-            dashboard.addWidgets(widget);
-          });
+        let maxCapacity;
+        let name = auto_scaling_group.autoScalingGroupName;
+
+        if (auto_scaling_group instanceof CfnAutoScalingGroup) {
+          name = auto_scaling_group.ref;
+          maxCapacity = parseInt(auto_scaling_group.maxSize);
           dashboard.node.addDependency(auto_scaling_group);
         }
+
+        let autoScalingWidgets = AutoScaling.metrics(name, maxCapacity);
+        autoScalingWidgets.forEach(widget => {
+          dashboard.addWidgets(widget);
+        });
       }
     }
 
