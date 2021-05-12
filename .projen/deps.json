@@ -6,6 +6,11 @@
       "type": "build"
     },
     {
+      "name": "@aws-cdk/aws-ec2",
+      "version": "^1.73.0",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "type": "build"
     },
@@ -69,7 +74,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.17.81",
+      "version": "^0.17.84",
       "type": "build"
     },
     {
@@ -82,8 +87,18 @@
       "type": "build"
     },
     {
+      "name": "typedoc",
+      "version": "^0.20.35",
+      "type": "build"
+    },
+    {
       "name": "typescript",
       "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-autoscaling",
+      "version": "^1.73.0",
+      "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
@@ -99,6 +114,11 @@
       "name": "constructs",
       "version": "^3.2.27",
       "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-autoscaling",
+      "version": "^1.73.0",
+      "type": "runtime"
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
