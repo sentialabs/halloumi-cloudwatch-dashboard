@@ -1,3 +1,4 @@
+import { AutoScalingGroup, CfnAutoScalingGroup } from '@aws-cdk/aws-autoscaling';
 import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
 import { Construct } from '@aws-cdk/core';
 import { AutoScaling } from './auto-scaling';
@@ -27,24 +28,14 @@ export interface HalloumiDashboard extends DashboardProps {
   readonly loadBalancerFullName?: string;
 
   /**
-   * Name of the AutoScaling.
+   * List of AutoScaling.
    *
-   * If set, must only contain alphanumerics, dash (-) and underscore (_)
+   * If set, must only contain a list of AutoScaling
    *
    * @default - None
    * @stability stable
    */
-  readonly autoScalingName?: string;
-
-  /**
-   * Max Capacity of the AutoScaling.
-   *
-   * If set, must only contain integer
-   *
-   * @default - 0
-   * @stability stable
-   */
-  readonly autoScalingMaxCapacity?: number;
+  readonly autoScaling?: (AutoScalingGroup | CfnAutoScalingGroup)[];
 
   /**
    * Name of the RDS.
@@ -106,11 +97,23 @@ export class Dashboard extends Construct {
       });
     }
 
-    if (props?.autoScalingName && props.autoScalingMaxCapacity) {
-      const autoScalingWidgets = AutoScaling.metrics(props.autoScalingName, props.autoScalingMaxCapacity);
-      autoScalingWidgets.forEach(widget => {
-        dashboard.addWidgets(widget);
-      });
+    if (props?.autoScaling) {
+      for (let i=0; i<props.autoScaling.length; i++) {
+        let auto_scaling_group = props.autoScaling[i];
+        let maxCapacity;
+        let name = auto_scaling_group.autoScalingGroupName;
+
+        if (auto_scaling_group instanceof CfnAutoScalingGroup) {
+          name = auto_scaling_group.ref;
+          maxCapacity = parseInt(auto_scaling_group.maxSize);
+          dashboard.node.addDependency(auto_scaling_group);
+        }
+
+        let autoScalingWidgets = AutoScaling.metrics(name, maxCapacity);
+        autoScalingWidgets.forEach(widget => {
+          dashboard.addWidgets(widget);
+        });
+      }
     }
 
     if (props?.rdsName) {
