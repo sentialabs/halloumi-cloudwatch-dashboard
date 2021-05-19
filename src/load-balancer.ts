@@ -3,7 +3,7 @@ import { Duration } from '@aws-cdk/core';
 
 export class LoadBalancer {
 
-  static metrics(name:string, full_name: string): IWidget[] {
+  static metrics(name?:string, full_name?: string): IWidget[] {
     let header = new TextWidget({
       width: 24,
       height: 1,

@@ -1,5 +1,6 @@
 import { AutoScalingGroup, CfnAutoScalingGroup } from '@aws-cdk/aws-autoscaling';
 import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
+import { BaseLoadBalancer, CfnLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { Construct } from '@aws-cdk/core';
 import { AutoScaling } from './auto-scaling';
 import { LoadBalancer } from './load-balancer';
@@ -26,6 +27,16 @@ export interface HalloumiDashboard extends DashboardProps {
    * @stability stable
    */
   readonly loadBalancerFullName?: string;
+
+  /**
+   * List of LoadBalancers.
+   *
+   * If set, must only contain a list of LoadBalancer
+   *
+   * @default - None
+   * @stability stable
+   */
+  readonly loadBalancer?: (BaseLoadBalancer | CfnLoadBalancer)[];
 
   /**
    * List of AutoScaling.
@@ -90,11 +101,24 @@ export class Dashboard extends Construct {
       widgets: props?.widgets,
     });
 
-    if (props?.loadBalancerFullName && props?.loadBalancerName) {
-      const lbWidgets = LoadBalancer.metrics(props.loadBalancerName, props.loadBalancerFullName);
-      lbWidgets.forEach(widget => {
-        dashboard.addWidgets(widget);
-      });
+    if (props?.loadBalancer) {
+      for (let i=0; i<props.loadBalancer.length; i++) {
+        let loadBalancer = props.loadBalancer[i];
+        let name;
+        let full_name;
+        if (loadBalancer instanceof BaseLoadBalancer) {
+          name = loadBalancer.loadBalancerName;
+          full_name = loadBalancer.loadBalancerFullName;
+        }
+        if (loadBalancer instanceof CfnLoadBalancer) {
+          name = loadBalancer.attrLoadBalancerName;
+          full_name = loadBalancer.attrLoadBalancerFullName;
+        }
+        const lbWidgets = LoadBalancer.metrics(full_name, name);
+        lbWidgets.forEach(widget => {
+          dashboard.addWidgets(widget);
+        });
+      }
     }
 
     if (props?.autoScaling) {
