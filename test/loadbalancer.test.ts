@@ -23,7 +23,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerFullName',
+              'LoadBalancerName',
             ],
           },
           ' - Application Load Balancer"}},{"type":"metric","width":12,"height":6,"x":0,"y":1,"properties":{"view":"timeSeries","region":"',
@@ -34,7 +34,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"stat":"Sum","yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":7,"properties":{"view":"timeSeries","region":"',
@@ -45,7 +45,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"yAxis":"right","id":"m1"}]],"yAxis":{}}}]}',
@@ -73,7 +73,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerFullName',
+              'LoadBalancerName',
             ],
           },
           ' - Application Load Balancer"}},{"type":"metric","width":12,"height":6,"x":0,"y":1,"properties":{"view":"timeSeries","region":"',
@@ -84,7 +84,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"stat":"Sum","yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":7,"properties":{"view":"timeSeries","region":"',
@@ -95,7 +95,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB8A12904C',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"yAxis":"right","id":"m1"}]],"yAxis":{}}}]}',
@@ -121,7 +121,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB',
-              'LoadBalancerFullName',
+              'LoadBalancerName',
             ],
           },
           ' - Application Load Balancer"}},{"type":"metric","width":12,"height":6,"x":0,"y":1,"properties":{"view":"timeSeries","region":"',
@@ -132,7 +132,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"stat":"Sum","yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":7,"properties":{"view":"timeSeries","region":"',
@@ -143,7 +143,7 @@ describe('dashboard - LoadBalancer', () => {
           {
             'Fn::GetAtt': [
               'LB',
-              'LoadBalancerName',
+              'LoadBalancerFullName',
             ],
           },
           '",{"yAxis":"right","id":"m1"}]],"yAxis":{}}}]}',
