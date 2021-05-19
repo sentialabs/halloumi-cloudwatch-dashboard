@@ -114,7 +114,7 @@ export class Dashboard extends Construct {
           name = loadBalancer.attrLoadBalancerName;
           full_name = loadBalancer.attrLoadBalancerFullName;
         }
-        const lbWidgets = LoadBalancer.metrics(full_name, name);
+        const lbWidgets = LoadBalancer.metrics(name, full_name);
         lbWidgets.forEach(widget => {
           dashboard.addWidgets(widget);
         });
