@@ -12,6 +12,7 @@ const project = new AwsCdkConstructLibrary({
   cdkAssert: true, /* Install the @aws-cdk/assert library? */
   cdkDependencies: [
     '@aws-cdk/aws-autoscaling',
+    '@aws-cdk/aws-elasticloadbalancingv2',
     '@aws-cdk/aws-cloudwatch',
     '@aws-cdk/core',
   ], /* Which AWS CDK modules (those that start with "@aws-cdk/") does this library require when consumed? */
