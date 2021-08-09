@@ -2,6 +2,7 @@ import { AutoScalingGroup, CfnAutoScalingGroup } from '@aws-cdk/aws-autoscaling'
 import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
 import { CfnReplicationGroup } from '@aws-cdk/aws-elasticache';
 import { BaseLoadBalancer, CfnLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
+import { CfnDBCluster } from '@aws-cdk/aws-rds';
 import { Construct } from '@aws-cdk/core';
 import { AutoScaling } from './auto-scaling';
 import { LoadBalancer } from './load-balancer';
@@ -58,6 +59,16 @@ export interface HalloumiDashboard extends DashboardProps {
    * @stability stable
    */
   readonly rdsName?: string;
+
+  /**
+   * List of RDS.
+   *
+   * If set, must only contain a list of RDS
+   *
+   * @default - None
+   * @stability stable
+   */
+  readonly rds?: (CfnDBCluster)[];
 
   /**
    * Name of the Elasticache.
@@ -172,6 +183,18 @@ export class Dashboard extends Construct {
       rdsWidgets.forEach(widget => {
         dashboard.addWidgets(widget);
       });
+    }
+
+    if (props?.rds) {
+      for (let i=0; i<props.rds.length; i++) {
+        let rds_cluster = props.rds[i];
+        let name = rds_cluster.ref;
+
+        let rdsWidgets = Rds.metrics(name);
+        rdsWidgets.forEach(widget => {
+          dashboard.addWidgets(widget);
+        });
+      }
     }
 
     if (props?.elasticacheName) {

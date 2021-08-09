@@ -61,6 +61,7 @@
     "@aws-cdk/aws-cloudwatch": "^1.73.0",
     "@aws-cdk/aws-elasticache": "^1.73.0",
     "@aws-cdk/aws-elasticloadbalancingv2": "^1.73.0",
+    "@aws-cdk/aws-rds": "^1.73.0",
     "@aws-cdk/core": "^1.73.0",
     "constructs": "^3.2.27"
   },
@@ -69,6 +70,7 @@
     "@aws-cdk/aws-cloudwatch": "^1.73.0",
     "@aws-cdk/aws-elasticache": "^1.73.0",
     "@aws-cdk/aws-elasticloadbalancingv2": "^1.73.0",
+    "@aws-cdk/aws-rds": "^1.73.0",
     "@aws-cdk/core": "^1.73.0"
   },
   "bundledDependencies": [],
