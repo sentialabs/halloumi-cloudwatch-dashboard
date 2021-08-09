@@ -184,7 +184,7 @@ export class Dashboard extends Construct {
         dashboard.addWidgets(widget);
       });
     }
-    
+
     if (props?.rds) {
       for (let i=0; i<props.rds.length; i++) {
         let rds_cluster = props.rds[i];

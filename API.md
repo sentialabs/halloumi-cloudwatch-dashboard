@@ -45,6 +45,7 @@ new Dashboard(scope: Construct, id: string, props?: HalloumiDashboard)
   * **loadBalancer** (<code>Array<[BaseLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-baseloadbalancer) &#124; [CfnLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-cfnloadbalancer)></code>)  List of LoadBalancers. __*Default*__: None
   * **loadBalancerFullName** (<code>string</code>)  Full Name of the Load Balancer. __*Default*__: None
   * **loadBalancerName** (<code>string</code>)  Name of the Load Balancer. __*Default*__: None
+  * **rds** (<code>Array<[CfnDBCluster](#aws-cdk-aws-rds-cfndbcluster)></code>)  List of RDS. __*Default*__: None
   * **rdsName** (<code>string</code>)  Name of the RDS. __*Default*__: None
 
 
@@ -68,6 +69,7 @@ Name | Type | Description
 **loadBalancerFullName**? | <code>string</code> | Full Name of the Load Balancer.<br/>__*Default*__: None
 **loadBalancerName**? | <code>string</code> | Name of the Load Balancer.<br/>__*Default*__: None
 **periodOverride**? | <code>[PeriodOverride](#aws-cdk-aws-cloudwatch-periodoverride)</code> | Use this field to specify the period for the graphs when the dashboard loads.<br/>__*Default*__: Auto
+**rds**? | <code>Array<[CfnDBCluster](#aws-cdk-aws-rds-cfndbcluster)></code> | List of RDS.<br/>__*Default*__: None
 **rdsName**? | <code>string</code> | Name of the RDS.<br/>__*Default*__: None
 **start**? | <code>string</code> | The start of the time range to use for each widget on the dashboard.<br/>__*Default*__: When the dashboard loads, the start time will be the default time range.
 **widgets**? | <code>Array<Array<[IWidget](#aws-cdk-aws-cloudwatch-iwidget)>></code> | Initial set of widgets on the dashboard.<br/>__*Default*__: No widgets
