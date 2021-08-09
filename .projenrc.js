@@ -30,7 +30,7 @@ const project = new AwsCdkConstructLibrary({
   antitamper: false, /* Checks that after build there are no modified files on git. */
   defaultReleaseBranch: 'master', /* The name of the main release branch. */
   dependabot: true, /* Include dependabot configuration. */
-  releaseBranches: ['master'], /* Branches which trigger a release. */
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 });
 
 project.synth();
