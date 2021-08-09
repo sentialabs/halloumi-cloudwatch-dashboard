@@ -105,6 +105,11 @@
       "type": "peer"
     },
     {
+      "name": "@aws-cdk/aws-elasticache",
+      "version": "^1.73.0",
+      "type": "peer"
+    },
+    {
       "name": "@aws-cdk/aws-elasticloadbalancingv2",
       "version": "^1.73.0",
       "type": "peer"
@@ -126,6 +131,11 @@
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
+      "version": "^1.73.0",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-cdk/aws-elasticache",
       "version": "^1.73.0",
       "type": "runtime"
     },
