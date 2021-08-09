@@ -11,26 +11,6 @@ import { Redis } from './redis';
 
 export interface HalloumiDashboard extends DashboardProps {
   /**
-   * Name of the Load Balancer.
-   *
-   * If set, must only contain alphanumerics, dash (-) and underscore (_)
-   *
-   * @default - None
-   * @stability stable
-   */
-  readonly loadBalancerName?: string;
-
-  /**
-   * Full Name of the Load Balancer.
-   *
-   * If set, must only contain alphanumerics, dash (-) and underscore (_)
-   *
-   * @default - None
-   * @stability stable
-   */
-  readonly loadBalancerFullName?: string;
-
-  /**
    * List of LoadBalancers.
    *
    * If set, must only contain a list of LoadBalancer
@@ -51,16 +31,6 @@ export interface HalloumiDashboard extends DashboardProps {
   readonly autoScaling?: (AutoScalingGroup | CfnAutoScalingGroup)[];
 
   /**
-   * Name of the RDS.
-   *
-   * If set, must only contain alphanumerics, dash (-) and underscore (_)
-   *
-   * @default - None
-   * @stability stable
-   */
-  readonly rdsName?: string;
-
-  /**
    * List of RDS.
    *
    * If set, must only contain a list of RDS
@@ -69,16 +39,6 @@ export interface HalloumiDashboard extends DashboardProps {
    * @stability stable
    */
   readonly rds?: (CfnDBCluster)[];
-
-  /**
-   * Name of the Elasticache.
-   *
-   * If set, must only contain alphanumerics, dash (-) and underscore (_)
-   *
-   * @default - None
-   * @stability stable
-   */
-  readonly elasticacheName?: string;
 
   /**
    * List of Elasticache.
@@ -178,13 +138,6 @@ export class Dashboard extends Construct {
       }
     }
 
-    if (props?.rdsName) {
-      const rdsWidgets = Rds.metrics(props.rdsName);
-      rdsWidgets.forEach(widget => {
-        dashboard.addWidgets(widget);
-      });
-    }
-
     if (props?.rds) {
       for (let i=0; i<props.rds.length; i++) {
         let rds_cluster = props.rds[i];
@@ -195,13 +148,6 @@ export class Dashboard extends Construct {
           dashboard.addWidgets(widget);
         });
       }
-    }
-
-    if (props?.elasticacheName) {
-      const redisWidgets = Redis.metrics(props.elasticacheName);
-      redisWidgets.forEach(widget => {
-        dashboard.addWidgets(widget);
-      });
     }
   }
 }
