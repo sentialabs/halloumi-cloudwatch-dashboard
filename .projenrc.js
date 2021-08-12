@@ -1,4 +1,4 @@
-const { AwsCdkConstructLibrary } = require('projen');
+const { AwsCdkConstructLibrary, DependenciesUpgradeMechanism } = require('projen');
 
 const project = new AwsCdkConstructLibrary({
   author: 'Sentia MPC',
@@ -31,8 +31,14 @@ const project = new AwsCdkConstructLibrary({
   /* NodeProjectOptions */
   antitamper: false, /* Checks that after build there are no modified files on git. */
   defaultReleaseBranch: 'master', /* The name of the main release branch. */
-  dependabot: true, /* Include dependabot configuration. */
+  // dependabot: true, /* Include dependabot configuration. */
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+    include: ['@aws-cdk/*'],
+  }),
+  gitignore: [
+    '.vscode/',
+  ],
 });
 
 project.synth();
