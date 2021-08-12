@@ -148,6 +148,27 @@
         }
       ]
     },
+    "upgrade": {
+      "name": "upgrade",
+      "description": "upgrade dependencies",
+      "env": {
+        "CI": "0"
+      },
+      "steps": [
+        {
+          "exec": "npm-check-updates --upgrade --target=minor --reject='projen' --filter='@aws-cdk/*'"
+        },
+        {
+          "exec": "yarn install --check-files"
+        },
+        {
+          "exec": "yarn upgrade "
+        },
+        {
+          "exec": "npx projen"
+        }
+      ]
+    },
     "upgrade-projen": {
       "name": "upgrade-projen",
       "description": "upgrade projen",
