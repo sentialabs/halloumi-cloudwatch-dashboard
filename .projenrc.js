@@ -34,11 +34,11 @@ const project = new AwsCdkConstructLibrary({
   // dependabot: true, /* Include dependabot configuration. */
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
-    include: ['@aws-cdk/*']
+    include: ['@aws-cdk/*'],
   }),
   gitignore: [
-    '.vscode/'
-  ]
+    '.vscode/',
+  ],
 });
 
 project.synth();
