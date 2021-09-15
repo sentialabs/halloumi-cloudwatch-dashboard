@@ -11,7 +11,7 @@ pip install halloumi-cloudwatch-dashboard
 
 From npm:
 ```bash
-npm require halloumi-cloudwatch-dashboard
+npm install halloumi-cloudwatch-dashboard
 ```
 
 ## API Documentation
