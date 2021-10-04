@@ -39,6 +39,7 @@ const project = new AwsCdkConstructLibrary({
   gitignore: [
     '.vscode/',
   ],
+  majorVersion: 1
 });
 
 project.synth();
