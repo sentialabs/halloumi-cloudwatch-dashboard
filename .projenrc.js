@@ -33,9 +33,9 @@ const project = new AwsCdkConstructLibrary({
   defaultReleaseBranch: 'master', /* The name of the main release branch. */
   // dependabot: true, /* Include dependabot configuration. */
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
-  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
-    include: ['@aws-cdk/*'],
-  }),
+  // depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+  //   include: ['@aws-cdk/*'],
+  // }),
   gitignore: [
     '.vscode/',
   ],
