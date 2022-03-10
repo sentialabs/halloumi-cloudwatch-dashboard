@@ -11,7 +11,7 @@ export class AutoScaling {
       namespace: 'AWS/AutoScaling',
       metricName: 'GroupInServiceInstances',
       dimensionsMap: {
-        AutoScalingGroupName: name,
+        AutoScalingGroupName: name!,
       },
     });
     let leftAnnotations: any = null;
@@ -50,7 +50,7 @@ export class AutoScaling {
       namespace: 'AWS/EC2',
       metricName: 'CPUUtilization',
       dimensionsMap: {
-        AutoScalingGroupName: name,
+        AutoScalingGroupName: name!,
       },
       statistic: 'Average',
     });
@@ -74,7 +74,7 @@ export class AutoScaling {
       namespace: 'AWS/EC2',
       metricName: 'CPUUtilization',
       dimensionsMap: {
-        AutoScalingGroupName: name,
+        AutoScalingGroupName: name!,
       },
       statistic: 'Maximum',
     });
@@ -98,7 +98,7 @@ export class AutoScaling {
       namespace: 'AWS/EC2',
       metricName: 'NetworkIn',
       dimensionsMap: {
-        AutoScalingGroupName: name,
+        AutoScalingGroupName: name!,
       },
       statistic: 'Average',
     });
@@ -122,7 +122,7 @@ export class AutoScaling {
       namespace: 'AWS/EC2',
       metricName: 'NetworkOut',
       dimensionsMap: {
-        AutoScalingGroupName: name,
+        AutoScalingGroupName: name!,
       },
       statistic: 'Average',
     });

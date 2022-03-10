@@ -13,7 +13,7 @@ export class LoadBalancer {
       namespace: 'AWS/ApplicationELB',
       metricName: 'RequestCount',
       dimensionsMap: {
-        LoadBalancer: full_name,
+        LoadBalancer: full_name!,
       },
       period: Duration.seconds(300),
       statistic: 'Sum',
@@ -22,7 +22,7 @@ export class LoadBalancer {
       namespace: 'AWS/ApplicationELB',
       metricName: 'TargetResponseTime',
       dimensionsMap: {
-        LoadBalancer: full_name,
+        LoadBalancer: full_name!,
       },
       period: Duration.seconds(300),
     });
