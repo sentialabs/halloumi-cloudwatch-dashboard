@@ -12,7 +12,7 @@ export class LoadBalancer {
     let requestCountMetric = new Metric({
       namespace: 'AWS/ApplicationELB',
       metricName: 'RequestCount',
-      dimensions: {
+      dimensionsMap: {
         LoadBalancer: full_name,
       },
       period: Duration.seconds(300),
@@ -21,7 +21,7 @@ export class LoadBalancer {
     let responseTimeMetric = new Metric({
       namespace: 'AWS/ApplicationELB',
       metricName: 'TargetResponseTime',
-      dimensions: {
+      dimensionsMap: {
         LoadBalancer: full_name,
       },
       period: Duration.seconds(300),

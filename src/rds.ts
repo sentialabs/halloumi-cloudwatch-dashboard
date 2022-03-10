@@ -34,7 +34,7 @@ export class Rds {
     let cloudwatchMetric = new Metric({
       namespace: 'AWS/RDS',
       metricName: metric,
-      dimensions: {
+      dimensionsMap: {
         DBInstanceIdentifier: name,
       },
     });

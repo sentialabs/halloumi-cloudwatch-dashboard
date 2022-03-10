@@ -3,7 +3,7 @@ const { AwsCdkConstructLibrary, DependenciesUpgradeMechanism } = require('projen
 const project = new AwsCdkConstructLibrary({
   author: 'Sentia MPC',
   authorAddress: 'support.mpc@sentia.com',
-  cdkVersion: '1.73.0',
+  cdkVersion: '1.110.0',
   jsiiFqn: 'projen.AwsCdkConstructLibrary',
   name: 'halloumi-cloudwatch-dashboard',
   repositoryUrl: 'https://github.com/sentiampc/halloumi-cloudwatch-dashboard.git',
