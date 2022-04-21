@@ -2,12 +2,12 @@
   "dependencies": [
     {
       "name": "@aws-cdk/assert",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "build"
     },
     {
       "name": "@aws-cdk/aws-ec2",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "build"
     },
     {
@@ -99,32 +99,32 @@
     },
     {
       "name": "@aws-cdk/aws-autoscaling",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-elasticache",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-elasticloadbalancingv2",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/aws-rds",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
       "name": "@aws-cdk/core",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "peer"
     },
     {
@@ -134,32 +134,32 @@
     },
     {
       "name": "@aws-cdk/aws-autoscaling",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/aws-cloudwatch",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/aws-elasticache",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/aws-elasticloadbalancingv2",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/aws-rds",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     },
     {
       "name": "@aws-cdk/core",
-      "version": "^1.73.0",
+      "version": "^1.110.0",
       "type": "runtime"
     }
   ],
