@@ -10,7 +10,7 @@ export class AutoScaling {
     let groupInServiceInstancesMetric = new Metric({
       namespace: 'AWS/AutoScaling',
       metricName: 'GroupInServiceInstances',
-      dimensions: {
+      dimensionsMap: {
         AutoScalingGroupName: name,
       },
     });
@@ -49,7 +49,7 @@ export class AutoScaling {
     let cpuUtilizationAverageMetric = new Metric({
       namespace: 'AWS/EC2',
       metricName: 'CPUUtilization',
-      dimensions: {
+      dimensionsMap: {
         AutoScalingGroupName: name,
       },
       statistic: 'Average',
@@ -73,7 +73,7 @@ export class AutoScaling {
     let cpuUtilizationMaximumMetric = new Metric({
       namespace: 'AWS/EC2',
       metricName: 'CPUUtilization',
-      dimensions: {
+      dimensionsMap: {
         AutoScalingGroupName: name,
       },
       statistic: 'Maximum',
@@ -97,7 +97,7 @@ export class AutoScaling {
     let networkInMetric = new Metric({
       namespace: 'AWS/EC2',
       metricName: 'NetworkIn',
-      dimensions: {
+      dimensionsMap: {
         AutoScalingGroupName: name,
       },
       statistic: 'Average',
@@ -121,7 +121,7 @@ export class AutoScaling {
     let networkOutMetric = new Metric({
       namespace: 'AWS/EC2',
       metricName: 'NetworkOut',
-      dimensions: {
+      dimensionsMap: {
         AutoScalingGroupName: name,
       },
       statistic: 'Average',

@@ -40,7 +40,7 @@ export class Redis {
     let cloudwatchMetric = new Metric({
       namespace: 'AWS/ElastiCache',
       metricName: metric,
-      dimensions: {
+      dimensionsMap: {
         CacheClusterId: name,
       },
     });
