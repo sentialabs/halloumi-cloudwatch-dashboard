@@ -13,12 +13,12 @@ export interface HalloumiDashboard extends DashboardProps {
   /**
    * List of LoadBalancers.
    *
-   * If set, must only contain a list of LoadBalancer
+   * If set, must only contain a list of LoadBalancer or Dictionary "{ 'name': string, 'full_name': string }"
    *
    * @default - None
    * @stability stable
    */
-  readonly loadBalancer?: (BaseLoadBalancer | CfnLoadBalancer)[];
+  readonly loadBalancer?: (BaseLoadBalancer | CfnLoadBalancer | { [name: string]: string; full_name: string })[];
 
   /**
    * List of AutoScaling.
@@ -91,10 +91,12 @@ export class Dashboard extends Construct {
         if (loadBalancer instanceof BaseLoadBalancer) {
           name = loadBalancer.loadBalancerName;
           full_name = loadBalancer.loadBalancerFullName;
-        }
-        if (loadBalancer instanceof CfnLoadBalancer) {
+        } else if (loadBalancer instanceof CfnLoadBalancer) {
           name = loadBalancer.attrLoadBalancerName;
           full_name = loadBalancer.attrLoadBalancerFullName;
+        } else {
+          name = loadBalancer.name,
+          full_name = loadBalancer.full_name;
         }
         const lbWidgets = LoadBalancer.metrics(name, full_name);
         lbWidgets.forEach(widget => {
