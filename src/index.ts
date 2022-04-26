@@ -13,22 +13,38 @@ export interface HalloumiDashboard extends DashboardProps {
   /**
    * List of LoadBalancers.
    *
-   * If set, must only contain a list of LoadBalancer
+   * If set, must only contain a list of LoadBalancer or Dictionary "{ 'name': string, 'full_name': string }"
    *
    * @default - None
    * @stability stable
    */
-  readonly loadBalancer?: (BaseLoadBalancer | CfnLoadBalancer)[];
+  readonly loadBalancer?: (
+    BaseLoadBalancer |
+    CfnLoadBalancer |
+    {
+      [key: string]: string;
+      name: string;
+      full_name: string;
+    }
+  )[];
 
   /**
    * List of AutoScaling.
    *
-   * If set, must only contain a list of AutoScaling
+   * If set, must only contain a list of AutoScaling or Dictionary "{ 'name': string, 'max_capacity': number }"
    *
    * @default - None
    * @stability stable
    */
-  readonly autoScaling?: (AutoScalingGroup | CfnAutoScalingGroup)[];
+  readonly autoScaling?: (
+    AutoScalingGroup |
+    CfnAutoScalingGroup |
+    {
+      [key: string]: string | number | number[];
+      name: string;
+      max_capacity: number;
+    }
+  )[];
 
   /**
    * List of RDS.
@@ -43,12 +59,18 @@ export interface HalloumiDashboard extends DashboardProps {
   /**
    * List of Elasticache.
    *
-   * If set, must only contain a list of Elasticache
+   * If set, must only contain a list of Elasticache or Dictionary "{ 'name': string, 'nodes': number }" with nodes being optional
    *
    * @default - None
    * @stability stable
    */
-  readonly elasticache?: (CfnReplicationGroup)[];
+  readonly elasticache?: (
+    CfnReplicationGroup |
+    {
+      [key: string]: string | number;
+      name: string;
+    }
+  )[];
 }
 
 /**
@@ -91,10 +113,12 @@ export class Dashboard extends Construct {
         if (loadBalancer instanceof BaseLoadBalancer) {
           name = loadBalancer.loadBalancerName;
           full_name = loadBalancer.loadBalancerFullName;
-        }
-        if (loadBalancer instanceof CfnLoadBalancer) {
+        } else if (loadBalancer instanceof CfnLoadBalancer) {
           name = loadBalancer.attrLoadBalancerName;
           full_name = loadBalancer.attrLoadBalancerFullName;
+        } else {
+          name = loadBalancer.name;
+          full_name = loadBalancer.full_name;
         }
         const lbWidgets = LoadBalancer.metrics(name, full_name);
         lbWidgets.forEach(widget => {
@@ -107,12 +131,17 @@ export class Dashboard extends Construct {
       for (let i=0; i<props.autoScaling.length; i++) {
         let auto_scaling_group = props.autoScaling[i];
         let maxCapacity;
-        let name = auto_scaling_group.autoScalingGroupName;
-
+        let name;
         if (auto_scaling_group instanceof CfnAutoScalingGroup) {
           name = auto_scaling_group.ref;
           maxCapacity = parseInt(auto_scaling_group.maxSize);
           dashboard.node.addDependency(auto_scaling_group);
+        } else if (auto_scaling_group instanceof AutoScalingGroup) {
+          name = auto_scaling_group.autoScalingGroupName;
+          dashboard.node.addDependency(auto_scaling_group);
+        } else {
+          name = auto_scaling_group.name;
+          maxCapacity = auto_scaling_group.max_capacity;
         }
 
         let autoScalingWidgets = AutoScaling.metrics(name, maxCapacity);
@@ -125,9 +154,15 @@ export class Dashboard extends Construct {
     if (props?.elasticache) {
       for (let i=0; i<props.elasticache.length; i++) {
         let elasticache = props.elasticache[i];
-        let name = elasticache.ref;
-        let numNodes = elasticache.numNodeGroups || 1;
-
+        let name;
+        let numNodes;
+        if (elasticache instanceof CfnReplicationGroup) {
+          name = elasticache.ref;
+          numNodes = elasticache.numNodeGroups || 1;
+        } else {
+          name = elasticache.name;
+          numNodes = elasticache.nodes || 1;
+        }
         for (let node=1; node<=numNodes; node++) {
           let nodeId = name + '-' + node.toString().padStart(3, '0');
           let elasticacheWidgets = Redis.metrics(nodeId);

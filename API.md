@@ -39,9 +39,9 @@ new Dashboard(scope: Construct, id: string, props?: HalloumiDashboard)
   * **periodOverride** (<code>[PeriodOverride](#aws-cdk-aws-cloudwatch-periodoverride)</code>)  Use this field to specify the period for the graphs when the dashboard loads. __*Default*__: Auto
   * **start** (<code>string</code>)  The start of the time range to use for each widget on the dashboard. __*Default*__: When the dashboard loads, the start time will be the default time range.
   * **widgets** (<code>Array<Array<[IWidget](#aws-cdk-aws-cloudwatch-iwidget)>></code>)  Initial set of widgets on the dashboard. __*Default*__: No widgets
-  * **autoScaling** (<code>Array<[AutoScalingGroup](#aws-cdk-aws-autoscaling-autoscalinggroup) &#124; [CfnAutoScalingGroup](#aws-cdk-aws-autoscaling-cfnautoscalinggroup)></code>)  List of AutoScaling. __*Default*__: None
-  * **elasticache** (<code>Array<[CfnReplicationGroup](#aws-cdk-aws-elasticache-cfnreplicationgroup)></code>)  List of Elasticache. __*Default*__: None
-  * **loadBalancer** (<code>Array<[BaseLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-baseloadbalancer) &#124; [CfnLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-cfnloadbalancer)></code>)  List of LoadBalancers. __*Default*__: None
+  * **autoScaling** (<code>Array<[AutoScalingGroup](#aws-cdk-aws-autoscaling-autoscalinggroup) &#124; [CfnAutoScalingGroup](#aws-cdk-aws-autoscaling-cfnautoscalinggroup) &#124; Map<string, string &#124; number &#124; Array<number>>></code>)  List of AutoScaling. __*Default*__: None
+  * **elasticache** (<code>Array<[CfnReplicationGroup](#aws-cdk-aws-elasticache-cfnreplicationgroup) &#124; Map<string, string &#124; number>></code>)  List of Elasticache. __*Default*__: None
+  * **loadBalancer** (<code>Array<[BaseLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-baseloadbalancer) &#124; [CfnLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-cfnloadbalancer) &#124; Map<string, string>></code>)  List of LoadBalancers. __*Default*__: None
   * **rds** (<code>Array<[CfnDBCluster](#aws-cdk-aws-rds-cfndbcluster)></code>)  List of RDS. __*Default*__: None
 
 
@@ -56,11 +56,11 @@ new Dashboard(scope: Construct, id: string, props?: HalloumiDashboard)
 
 Name | Type | Description 
 -----|------|-------------
-**autoScaling**? | <code>Array<[AutoScalingGroup](#aws-cdk-aws-autoscaling-autoscalinggroup) &#124; [CfnAutoScalingGroup](#aws-cdk-aws-autoscaling-cfnautoscalinggroup)></code> | List of AutoScaling.<br/>__*Default*__: None
+**autoScaling**? | <code>Array<[AutoScalingGroup](#aws-cdk-aws-autoscaling-autoscalinggroup) &#124; [CfnAutoScalingGroup](#aws-cdk-aws-autoscaling-cfnautoscalinggroup) &#124; Map<string, string &#124; number &#124; Array<number>>></code> | List of AutoScaling.<br/>__*Default*__: None
 **dashboardName**? | <code>string</code> | Name of the dashboard.<br/>__*Default*__: automatically generated name
-**elasticache**? | <code>Array<[CfnReplicationGroup](#aws-cdk-aws-elasticache-cfnreplicationgroup)></code> | List of Elasticache.<br/>__*Default*__: None
+**elasticache**? | <code>Array<[CfnReplicationGroup](#aws-cdk-aws-elasticache-cfnreplicationgroup) &#124; Map<string, string &#124; number>></code> | List of Elasticache.<br/>__*Default*__: None
 **end**? | <code>string</code> | The end of the time range to use for each widget on the dashboard when the dashboard loads.<br/>__*Default*__: When the dashboard loads, the end date will be the current time.
-**loadBalancer**? | <code>Array<[BaseLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-baseloadbalancer) &#124; [CfnLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-cfnloadbalancer)></code> | List of LoadBalancers.<br/>__*Default*__: None
+**loadBalancer**? | <code>Array<[BaseLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-baseloadbalancer) &#124; [CfnLoadBalancer](#aws-cdk-aws-elasticloadbalancingv2-cfnloadbalancer) &#124; Map<string, string>></code> | List of LoadBalancers.<br/>__*Default*__: None
 **periodOverride**? | <code>[PeriodOverride](#aws-cdk-aws-cloudwatch-periodoverride)</code> | Use this field to specify the period for the graphs when the dashboard loads.<br/>__*Default*__: Auto
 **rds**? | <code>Array<[CfnDBCluster](#aws-cdk-aws-rds-cfndbcluster)></code> | List of RDS.<br/>__*Default*__: None
 **start**? | <code>string</code> | The start of the time range to use for each widget on the dashboard.<br/>__*Default*__: When the dashboard loads, the start time will be the default time range.

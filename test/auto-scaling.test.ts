@@ -131,6 +131,40 @@ describe('dashboard - AutoScaling', () => {
     expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
 
   });
+  it('uses imported name values', () => {
+    const stack = getTestStack();
+    let body = {
+      'Fn::Join': [
+        '',
+        [
+          '{"start":"-PT24H","periodOverride":"inherit","widgets":[{"type":"text","width":24,"height":1,"x":0,"y":0,"properties":{"markdown":"# MyFleet - Auto Scaling Group"}},{"type":"metric","width":12,"height":6,"x":0,"y":1,"properties":{"view":"timeSeries","region":"',
+          {
+            Ref: 'AWS::Region',
+          },
+          '","metrics":[[{"label":"GroupInServiceInstances (expected)","color":"#666666","expression":"ANOMALY_DETECTION_BAND(m1, 2)"}],["AWS/AutoScaling","GroupInServiceInstances","AutoScalingGroupName","MyFleet",{"yAxis":"right","id":"m1"}]],"annotations":{"horizontal":[{"label":"Max Instances in ASG","value":2,"yAxis":"left"}]},"yAxis":{"left":{"min":0,"label":"Instances","showUnits":false}}}},{"type":"metric","width":12,"height":6,"x":0,"y":7,"properties":{"view":"timeSeries","region":"',
+          {
+            Ref: 'AWS::Region',
+          },
+          '","metrics":[[{"label":"Average CPUUtilization (expected)","color":"#666666","expression":"ANOMALY_DETECTION_BAND(m1, 2)"}],["AWS/EC2","CPUUtilization","AutoScalingGroupName","MyFleet",{"yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":13,"properties":{"view":"timeSeries","region":"',
+          {
+            Ref: 'AWS::Region',
+          },
+          '","metrics":[[{"label":"Maximum CPUUtilization (expected)","color":"#666666","expression":"ANOMALY_DETECTION_BAND(m1, 2)"}],["AWS/EC2","CPUUtilization","AutoScalingGroupName","MyFleet",{"stat":"Maximum","yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":19,"properties":{"view":"timeSeries","region":"',
+          {
+            Ref: 'AWS::Region',
+          },
+          '","metrics":[[{"label":"NetworkIn (expected)","color":"#666666","expression":"ANOMALY_DETECTION_BAND(m1, 2)"}],["AWS/EC2","NetworkIn","AutoScalingGroupName","MyFleet",{"yAxis":"right","id":"m1"}]],"yAxis":{}}},{"type":"metric","width":12,"height":6,"x":0,"y":25,"properties":{"view":"timeSeries","region":"',
+          {
+            Ref: 'AWS::Region',
+          },
+          '","metrics":[[{"label":"NetworkOut (expected)","color":"#666666","expression":"ANOMALY_DETECTION_BAND(m1, 2)"}],["AWS/EC2","NetworkOut","AutoScalingGroupName","MyFleet",{"yAxis":"right","id":"m1"}]],"yAxis":{}}}]}',
+        ],
+      ],
+    };
+    new Dashboard(stack, 'Dashboard', { autoScaling: [{ name: 'MyFleet', max_capacity: 2 }] });
+    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+
+  });
   it('mixin L1 and L2 Module', () => {
     const stack = getTestStack();
     const vpc = mockVpc(stack);
