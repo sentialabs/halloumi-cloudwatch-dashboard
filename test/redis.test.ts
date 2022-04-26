@@ -130,9 +130,6 @@ describe('dashboard - Redis', () => {
   });
   it ('uses static name', () => {
     const stack = new cdk.Stack();
-    new elasticache.CfnReplicationGroup(stack, 'ReplicationGroup', {
-      replicationGroupDescription: 'Dummy value',
-    } );
     let body = {
       'Fn::Join': [
         '',
@@ -354,9 +351,6 @@ describe('dashboard - Redis', () => {
   });
   it ('uses static name without number of nodes', () => {
     const stack = new cdk.Stack();
-    new elasticache.CfnReplicationGroup(stack, 'ReplicationGroup', {
-      replicationGroupDescription: 'Dummy value',
-    } );
     let body = {
       'Fn::Join': [
         '',

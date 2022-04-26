@@ -133,10 +133,6 @@ describe('dashboard - AutoScaling', () => {
   });
   it('uses imported name values', () => {
     const stack = getTestStack();
-    new autoscaling.CfnAutoScalingGroup(stack, 'MyFleet', {
-      minSize: '1',
-      maxSize: '2',
-    });
     let body = {
       'Fn::Join': [
         '',
