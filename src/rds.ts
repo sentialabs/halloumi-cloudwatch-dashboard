@@ -1,4 +1,4 @@
-import { TextWidget, MathExpression, GraphWidget, Metric, IWidget } from '@aws-cdk/aws-cloudwatch';
+import { TextWidget, MathExpression, GraphWidget, Metric, IWidget } from 'aws-cdk-lib/aws-cloudwatch';
 
 export class Rds {
 

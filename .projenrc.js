@@ -1,26 +1,14 @@
-const { AwsCdkConstructLibrary, DependenciesUpgradeMechanism } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkConstructLibrary({
+const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Sentia MPC',
   authorAddress: 'support.mpc@sentia.com',
-  cdkVersion: '1.110.0',
+  cdkVersion: '2.0.0',
   jsiiFqn: 'projen.AwsCdkConstructLibrary',
   name: 'halloumi-cloudwatch-dashboard',
   repositoryUrl: 'https://github.com/sentiampc/halloumi-cloudwatch-dashboard.git',
 
   /* AwsCdkConstructLibraryOptions */
-  cdkAssert: true, /* Install the @aws-cdk/assert library? */
-  cdkDependencies: [
-    '@aws-cdk/aws-autoscaling',
-    '@aws-cdk/aws-elasticloadbalancingv2',
-    '@aws-cdk/aws-cloudwatch',
-    '@aws-cdk/aws-elasticache',
-    '@aws-cdk/aws-rds',
-    '@aws-cdk/core',
-  ], /* Which AWS CDK modules (those that start with "@aws-cdk/") does this library require when consumed? */
-  cdkTestDependencies: [
-    '@aws-cdk/aws-ec2',
-  ], /* AWS CDK modules required for testing. */
   docgen: true, /* Automatically generate API.md from jsii. */
   eslint: true, /* Install eslint. */
   publishToPypi: {
@@ -33,13 +21,10 @@ const project = new AwsCdkConstructLibrary({
   defaultReleaseBranch: 'master', /* The name of the main release branch. */
   // dependabot: true, /* Include dependabot configuration. */
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
-  // depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
-  //   include: ['@aws-cdk/*'],
-  // }),
   gitignore: [
     '.vscode/',
   ],
-  majorVersion: 1,
+  majorVersion: 2,
 });
 
 project.synth();
