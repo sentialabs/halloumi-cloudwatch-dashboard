@@ -1,5 +1,5 @@
-import { TextWidget, MathExpression, GraphWidget, Metric, IWidget } from '@aws-cdk/aws-cloudwatch';
-import { Duration } from '@aws-cdk/core';
+import { Duration } from 'aws-cdk-lib';
+import { TextWidget, MathExpression, GraphWidget, Metric, IWidget } from 'aws-cdk-lib/aws-cloudwatch';
 
 export class LoadBalancer {
 

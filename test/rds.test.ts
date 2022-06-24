@@ -1,11 +1,11 @@
-import { expect, haveResource } from '@aws-cdk/assert';
-import * as rds from '@aws-cdk/aws-rds';
-import * as cdk from '@aws-cdk/core';
+import { Template } from 'aws-cdk-lib/assertions';
+import * as rds from 'aws-cdk-lib/aws-rds';
+import { Stack } from 'aws-cdk-lib/core';
 import { Dashboard } from '../src';
 
 describe('dashboard - Redis', () => {
   it ('uses L1 Module - CfnDBCluster', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     let rds_cluster = new rds.CfnDBCluster(stack, 'RDSCluster', {
       engine: 'aurora-mysql',
     });
@@ -78,6 +78,7 @@ describe('dashboard - Redis', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { rds: [rds_cluster] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
 });

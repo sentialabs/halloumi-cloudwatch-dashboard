@@ -1,11 +1,11 @@
-import { expect, haveResource } from '@aws-cdk/assert';
-import * as elasticache from '@aws-cdk/aws-elasticache';
-import * as cdk from '@aws-cdk/core';
+import { Stack } from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import * as elasticache from 'aws-cdk-lib/aws-elasticache';
 import { Dashboard } from '../src';
 
 describe('dashboard - Redis', () => {
   it ('uses L1 Module - ReplicationGroup', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     let replication_group = new elasticache.CfnReplicationGroup(stack, 'ReplicationGroup', {
       replicationGroupDescription: 'Dummy value',
     } );
@@ -126,10 +126,12 @@ describe('dashboard - Redis', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { elasticache: [replication_group] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
+    // expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
   });
   it ('uses static name', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     let body = {
       'Fn::Join': [
         '',
@@ -347,10 +349,12 @@ describe('dashboard - Redis', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { elasticache: [{ name: 'elasticache', nodes: 4 }] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
+    // expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
   });
   it ('uses static name without number of nodes', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     let body = {
       'Fn::Join': [
         '',
@@ -412,6 +416,8 @@ describe('dashboard - Redis', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { elasticache: [{ name: 'elasticache' }] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
+    // expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
   });
 });

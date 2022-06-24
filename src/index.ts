@@ -1,9 +1,9 @@
-import { AutoScalingGroup, CfnAutoScalingGroup } from '@aws-cdk/aws-autoscaling';
-import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from '@aws-cdk/aws-cloudwatch';
-import { CfnReplicationGroup } from '@aws-cdk/aws-elasticache';
-import { BaseLoadBalancer, CfnLoadBalancer } from '@aws-cdk/aws-elasticloadbalancingv2';
-import { CfnDBCluster } from '@aws-cdk/aws-rds';
-import { Construct } from '@aws-cdk/core';
+import { AutoScalingGroup, CfnAutoScalingGroup } from 'aws-cdk-lib/aws-autoscaling';
+import { Dashboard as cdkDashboard, DashboardProps, PeriodOverride } from 'aws-cdk-lib/aws-cloudwatch';
+import { CfnReplicationGroup } from 'aws-cdk-lib/aws-elasticache';
+import { BaseLoadBalancer, CfnLoadBalancer } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { CfnDBCluster } from 'aws-cdk-lib/aws-rds';
+import { Construct } from 'constructs';
 import { AutoScaling } from './auto-scaling';
 import { LoadBalancer } from './load-balancer';
 import { Rds } from './rds';

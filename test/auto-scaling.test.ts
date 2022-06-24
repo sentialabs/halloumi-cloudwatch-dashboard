@@ -1,7 +1,9 @@
-import { expect, haveResource } from '@aws-cdk/assert';
-import * as autoscaling from '@aws-cdk/aws-autoscaling';
-import * as ec2 from '@aws-cdk/aws-ec2';
-import * as cdk from '@aws-cdk/core';
+import {
+  aws_autoscaling as autoscaling,
+  aws_ec2 as ec2,
+  Stack,
+} from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
 import { Dashboard } from '../src';
 
 describe('dashboard - AutoScaling', () => {
@@ -66,7 +68,8 @@ describe('dashboard - AutoScaling', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { autoScaling: [ASG] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
 
   });
   it('uses L1 Module', () => {
@@ -128,7 +131,8 @@ describe('dashboard - AutoScaling', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { autoScaling: [ASG] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
 
   });
   it('uses imported name values', () => {
@@ -162,7 +166,8 @@ describe('dashboard - AutoScaling', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { autoScaling: [{ name: 'MyFleet', max_capacity: 2 }] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
 
   });
   it('mixin L1 and L2 Module', () => {
@@ -275,12 +280,12 @@ describe('dashboard - AutoScaling', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { autoScaling: [ASG_L1, ASG_L2] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
-
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
 });
 
-function mockVpc(stack: cdk.Stack) {
+function mockVpc(stack: Stack) {
   return ec2.Vpc.fromVpcAttributes(stack, 'MyVpc', {
     vpcId: 'my-vpc',
     availabilityZones: ['az1'],
@@ -289,6 +294,6 @@ function mockVpc(stack: cdk.Stack) {
     isolatedSubnetIds: [],
   });
 }
-function getTestStack(): cdk.Stack {
-  return new cdk.Stack(undefined, 'TestStack', { env: { account: '1234', region: 'us-east-1' } });
+function getTestStack(): Stack {
+  return new Stack(undefined, 'TestStack', { env: { account: '1234', region: 'us-east-1' } });
 }

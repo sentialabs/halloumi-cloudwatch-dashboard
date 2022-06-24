@@ -1,12 +1,12 @@
-import { expect, haveResource } from '@aws-cdk/assert';
-import * as ec2 from '@aws-cdk/aws-ec2';
-import * as elbv2 from '@aws-cdk/aws-elasticloadbalancingv2';
-import * as cdk from '@aws-cdk/core';
+import { Template } from 'aws-cdk-lib/assertions';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { Stack } from 'aws-cdk-lib/core';
 import { Dashboard } from '../src';
 
 describe('dashboard - LoadBalancer', () => {
   it('uses L2 Module (Application Load Balancer)', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     const vpc = new ec2.Vpc(stack, 'Stack');
 
     // WHEN
@@ -53,10 +53,11 @@ describe('dashboard - LoadBalancer', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { loadBalancer: [elb] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
   it('uses L2 Module (Network Load Balancer)', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     const vpc = new ec2.Vpc(stack, 'Stack');
 
     // WHEN
@@ -103,10 +104,11 @@ describe('dashboard - LoadBalancer', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { loadBalancer: [elb] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
   it('uses L1 Module', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     // const vpc = new ec2.Vpc(stack, 'Stack');
 
     // WHEN
@@ -151,10 +153,11 @@ describe('dashboard - LoadBalancer', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { loadBalancer: [elb] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
   it('uses load balancer names', () => {
-    const stack = new cdk.Stack();
+    const stack = new Stack();
     // const vpc = new ec2.Vpc(stack, 'Stack');
 
     // WHEN
@@ -199,7 +202,8 @@ describe('dashboard - LoadBalancer', () => {
       ],
     };
     new Dashboard(stack, 'Dashboard', { loadBalancer: [{ name: elb.attrLoadBalancerName, full_name: elb.attrLoadBalancerFullName }] });
-    expect(stack).to(haveResource('AWS::CloudWatch::Dashboard', { DashboardBody: body }));
+    const template = Template.fromStack(stack);
+    template.hasResourceProperties('AWS::CloudWatch::Dashboard', { DashboardBody: body });
   });
 });
 
